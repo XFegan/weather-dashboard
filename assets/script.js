@@ -14,14 +14,23 @@
   var api = "&units=imperial&appid=9a14f6c7f1d7fe60a328bfd813252503";
   var url = "https://api.openweathermap.org/data/2.5/weather?q="
 
-fetch(url + cityEl + api)
+
+searchButtonEl.addEventListener("click", function (){
+    var searchTerm = cityEl.value;
+    getWeather(searchTerm);
+    searchHistory.push(searchTerm);
+    localStorage.setItem("search", JSON.stringify(searchHistory));
+    renderSearchHistory();
+})
+
+function searchCity (){
+    var city = cityEl.value
+    fetch(url + city + api)
     .then((response)=>{
         return response.json()
      })
      .then ((data)=>{
          console.log(data)
      })
-
-
-
-
+}
+console.log(cityEl)
