@@ -114,11 +114,11 @@ var getForecastResults = function (data) {
         iconEl.setAttribute("src", "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png");
     };
     forecastDateEl.textContent = castDate;
-        currentTempEl.textContent = "Temp: " + data.current.temp + "° F";
+        currentTempEl.textContent = "Temp: " + data.daily[i].temp.day + "° F";
         console.log(data);
-        currentWindEl.textContent = "Wind: " + data.current.wind_speed + "MPH";
-        currentHumidityEl.textContent = "Humidity: " + data.current.humidity + "%";
-        currentUVEl.textContent = "UV Index: " + data.daily.uvi;
+        currentWindEl.textContent = "Wind: " + data.daily[i].wind_speed + "MPH";
+        currentHumidityEl.textContent = "Humidity: " + data.daily[i].humidity + "%";
+        currentUVEl.textContent = "UV Index: " + data.daily[i].uvi;
 
         fiveDayEl.append(castBlock)
         castBlock.append(forecastDateEl, iconEl, currentTempEl , currentHumidityEl, currentWindEl, currentUVEl);
@@ -154,9 +154,9 @@ fiveDayEl.addEventListener("click", function () {
       })
       .then(function (data) {
         console.log(data);
-        currentTempEl.textContent = "Temp: " + data.main.temp + "° F";
-        currentWindEl.textContent = "Wind: " + data.wind.speed + "MPH";
-        currentHumidityEl.textContent = "Humidity: " + data.main.humidity + "%";
+        currentTempEl.textContent = "Temp: " + data.daily[i].temp.day + "° F";
+        currentWindEl.textContent = "Wind: " + data.daily[i].speed + "MPH";
+        currentHumidityEl.textContent = "Humidity: " + data.daily[i].humidity + "%";
         cityNameEl.textContent = data.name;
         var iconEl = document.createElement("img");
         iconEl.setAttribute("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
