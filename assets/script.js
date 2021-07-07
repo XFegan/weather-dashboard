@@ -10,7 +10,7 @@ var currentUVEl = document.getElementById("UV-index");
 var historyEl = document.getElementById("history");
 var fiveDayEl = document.getElementById("five-day");
 var todayWeatherEl = document.getElementById("today-weather");
-var date = moment().format(MM/DD/YYYY);
+var date = moment().format("MM/DD/YYYY");
 //var searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 currentCity = "Storrs";
 var apiKey = "&units=imperial&appid=9a14f6c7f1d7fe60a328bfd813252503";
@@ -33,7 +33,7 @@ fetch(apiBase + currentCity + apiKey)
       "http://openweathermap.org/img/w/" + data.weather[0].iconEl + ".png"
     );
     cityNameEl.append(iconEl);
-    showUV(data.coord.lat, data.corrd.lon);
+    showUV(data.coord.lat, data.coord.lon);
   });
 
 searchButtonEl.addEventListener("click", function (event) {
@@ -97,7 +97,7 @@ var oneCallApi = function (lat, lon) {
 };
 
 var getForecastResults = function (data) {
-    forecastArea.innerHTML = "";
+    fiveDayEl.innerHTML = "";
     for (let i = 0; i < 5; i++) {
         var castDate = moment().add(i+1, "days").format("MM/DD/YYYY");
         console.log(castDate);
@@ -119,7 +119,7 @@ var getForecastResults = function (data) {
         currentHumidityEl.textContent = "Humidity: " + data.main.humidity + "%";
         currentUVEl.textContent = "UV Index: " + data.daily[i].uvi;
 
-        forecastArea.append(castBlock)
+        fiveDayEl.append(castBlock)
         castBlock.append(forecastDateEl, iconEl, currentTempEl , currentHumidityEl, currentWindEl, currentUVEl);
 };
 
@@ -138,23 +138,27 @@ var loadData = function () {
     console.log(oldData);
     for (let i = 0; i < oldData.length; i++) {
         search = document.createElement("p");
-        search.setAttribute("class", )
+        search.setAttribute("class", "five-day");
+        search.textContent = oldData[i].text;
+        fiveDayEl.append(search);
     }
-}
-    
+};
+loadData();
 
-
-
-
-
-//function searchCity (){
-//     var city = cityEl.value
-//     fetch(apiBase + city + api)
-//     .then((response)=>{
-//         return response.json()
-//      })
-//      .then ((data)=>{
-//          console.log(data)
-//      })
-// }
-// console.log(cityEl)
+fiveDayEl.addEventListener("click", function () {
+    newVal = oldData[0].text;
+    fetch(apiBase + newVal + apiKey)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+        currentTempEl.textContent = "Temp: " + data.main.temp + "° F";
+        currentWindEl.textContent = "Wind: " + data.wind.speed + "MPH";
+        currentHumidityEl.textContent = "Humidity: " + data.main.humidity + "%";
+        cityNameEl.textContent = data.name;
+        var iconEl = document.createElement("img");
+        iconEl.setAttribute("src", "http://openweathermap.org/img/w/" + data.weather[0].iconEl + ".png");
+        cityNameEl.append(iconEl);
+      });
+    });
