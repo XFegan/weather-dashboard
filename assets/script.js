@@ -112,8 +112,8 @@ var getForecastResults = function (data) {
         var currentUVEl = document.createElement("p");
         forecastDateEl.setAttribute("class", "five-day");
         iconEl.setAttribute("src", "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png");
-    };
-    forecastDateEl.textContent = castDate;
+        
+        forecastDateEl.textContent = castDate;
         currentTempEl.textContent = "Temp: " + data.daily[i].temp.day + "° F";
         console.log(data);
         currentWindEl.textContent = "Wind: " + data.daily[i].wind_speed + "MPH";
@@ -122,6 +122,8 @@ var getForecastResults = function (data) {
 
         fiveDayEl.append(castBlock)
         castBlock.append(forecastDateEl, iconEl, currentTempEl , currentHumidityEl, currentWindEl, currentUVEl);
+    };
+    
 };
 
 //local Storgae

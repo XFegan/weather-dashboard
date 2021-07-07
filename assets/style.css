@@ -90,7 +90,7 @@
     width: 16%;
     margin-top: 10px;
     padding: 5px;
-    flex: 0 1 auto;
+    flex: auto; 
     border-radius: 5px;
     text-align: center;
   }
