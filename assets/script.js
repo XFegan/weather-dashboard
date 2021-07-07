@@ -11,6 +11,7 @@ var historyEl = document.getElementById("history");
 var fiveDayEl = document.getElementById("five-day");
 var todayWeatherEl = document.getElementById("today-weather");
 var date = moment().format("MM/DD/YYYY");
+var mainDate = document.getElementById("main-date");
 //var searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 currentCity = "Storrs";
 var apiKey = "&units=imperial&appid=9a14f6c7f1d7fe60a328bfd813252503";
@@ -28,10 +29,7 @@ fetch(apiBase + currentCity + apiKey)
     currentHumidityEl.textContent = "Humidity: " + data.main.humidity + "%";
     cityNameEl.textContent = date;
     var iconEl = document.createElement("img");
-    iconEl.setAttribute(
-      "src",
-      "http://openweathermap.org/img/w/" + data.weather[0].iconEl + ".png"
-    );
+    iconEl.setAttribute( "src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
     cityNameEl.append(iconEl);
     showUV(data.coord.lat, data.coord.lon);
   });
@@ -44,7 +42,7 @@ searchButtonEl.addEventListener("click", function (event) {
     alert("Use a Valid City");
   } else {
     getResults();
-    savaSearchData();
+    saveSearchData();
   }
 });
 
@@ -62,7 +60,7 @@ var getResults = function () {
       var iconEl = document.createElement("img");
       iconEl.setAttribute(
         "src",
-        "http://openweathermap.org/img/w/" + data.weather[0].iconEl + ".png"
+        "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png"
       );
       cityNameEl.append(iconEl);
 
@@ -92,11 +90,13 @@ var oneCallApi = function (lat, lon) {
     .then(function (data) {
       currentUVEl.textContent = data.current.uvi;
       console.log(data);
-      getForcastResults(data);
+      getForecastResults(data);
     });
 };
 
+//5-day
 var getForecastResults = function (data) {
+    console.log(data);
     fiveDayEl.innerHTML = "";
     for (let i = 0; i < 5; i++) {
         var castDate = moment().add(i+1, "days").format("MM/DD/YYYY");
@@ -111,13 +111,14 @@ var getForecastResults = function (data) {
         var currentHumidityEl = document.createElement("p");
         var currentUVEl = document.createElement("p");
         forecastDateEl.setAttribute("class", "five-day");
-        iconEl.setAttribute("src", "http://openweathermap.org/img/w/" + data.daily[i].weather[0].iconEL + ".png");
+        iconEl.setAttribute("src", "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png");
     };
     forecastDateEl.textContent = castDate;
-        currentTempEl.textContent = "Temp: " + data.main.temp + "° F";
-        currentWindEl.textContent = "Wind: " + data.wind.speed + "MPH";
-        currentHumidityEl.textContent = "Humidity: " + data.main.humidity + "%";
-        currentUVEl.textContent = "UV Index: " + data.daily[i].uvi;
+        currentTempEl.textContent = "Temp: " + data.current.temp + "° F";
+        console.log(data);
+        currentWindEl.textContent = "Wind: " + data.current.wind_speed + "MPH";
+        currentHumidityEl.textContent = "Humidity: " + data.current.humidity + "%";
+        currentUVEl.textContent = "UV Index: " + data.daily.uvi;
 
         fiveDayEl.append(castBlock)
         castBlock.append(forecastDateEl, iconEl, currentTempEl , currentHumidityEl, currentWindEl, currentUVEl);
@@ -125,7 +126,7 @@ var getForecastResults = function (data) {
 
 //local Storgae
 var oldData = [];
-var saveSeachData = function () {
+var saveSearchData = function () {
   newData = {
     text: city,
   };
@@ -158,7 +159,7 @@ fiveDayEl.addEventListener("click", function () {
         currentHumidityEl.textContent = "Humidity: " + data.main.humidity + "%";
         cityNameEl.textContent = data.name;
         var iconEl = document.createElement("img");
-        iconEl.setAttribute("src", "http://openweathermap.org/img/w/" + data.weather[0].iconEl + ".png");
+        iconEl.setAttribute("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
         cityNameEl.append(iconEl);
       });
     });

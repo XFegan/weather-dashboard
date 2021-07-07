@@ -1,0 +1,110 @@
+.header {
+    font-size: 35px;
+    font-weight: 650;
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    background-color: rgb(57, 57, 173);
+    text-align: center;
+    padding: 5px;
+  }
+
+  .search {
+    width: 35%;
+  }
+
+  .main-display {
+    width: 62%;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .city-name {
+    font-size: 30px;
+    font-weight: 650;
+    font-family: "Courier New", Courier, monospace;
+    padding-left: 8px;
+  }
+
+  .search-header {
+    font-size: 30px;
+    font-weight: 650;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  #search-button {
+    width: 17%;
+    height: 22px;
+    margin: 5px;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    background-color: rgb(68, 132, 228);
+    cursor: pointer;
+  }
+
+  .input-text {
+    width: 95%;
+    height: 40px;
+    margin: 5px;
+    border-radius: 5px;
+    border: solid 1px black;
+    outline: none;
+  }
+  
+  .clear-button {
+    padding: 5px;
+    text-align: center;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: rgba(168, 166, 166, 0.418);
+    cursor: pointer;
+  }
+
+  .weather-display {
+    border: black 1px solid;
+    margin-top: 10px;
+    padding-left: 10px;
+  }
+
+  .weather-display p {
+    padding-left: 8px;
+  }
+
+  .weather-display span {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .five-day {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .block {
+    background-color: rgb(14, 49, 82);
+    color: white;
+    width: 16%;
+    margin-top: 10px;
+    padding: 5px;
+    flex: 0 1 auto;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .forcast-date {
+    text-align: center;
+  }
+
+  
+  #currentUV {
+    background-color: green;
+    margin-left: 8px;
+    font-weight: 600;
+  }
+  #main-date{
+    font-weight: 600;
+  }
