@@ -79,7 +79,7 @@
     align-items: baseline;
   }
 
-  .five-day {
+  .forecast {
     display: flex;
     justify-content: space-between;
   }
@@ -90,12 +90,12 @@
     width: 16%;
     margin-top: 10px;
     padding: 5px;
-    flex: auto; 
+    flex: 0 1 auto; 
     border-radius: 5px;
     text-align: center;
   }
 
-  .forcast-date {
+  .forecast-date {
     text-align: center;
   }
 

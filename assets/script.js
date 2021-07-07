@@ -110,7 +110,7 @@ var getForecastResults = function (data) {
         var currentWindEl = document.createElement("p");
         var currentHumidityEl = document.createElement("p");
         var currentUVEl = document.createElement("p");
-        forecastDateEl.setAttribute("class", "five-day");
+        forecastDateEl.setAttribute("class", "forecast-date");
         iconEl.setAttribute("src", "http://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png");
         
         forecastDateEl.textContent = castDate;
