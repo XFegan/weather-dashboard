@@ -27,7 +27,8 @@ fetch(apiBase + currentCity + apiKey)
     currentTempEl.textContent = "Temp: " + data.main.temp + "° F";
     currentWindEl.textContent = "Wind: " + data.wind.speed + "MPH";
     currentHumidityEl.textContent = "Humidity: " + data.main.humidity + "%";
-    cityNameEl.textContent = date;
+    cityNameEl.textContent = date.name;
+    mainDate.textContent = date;
     var iconEl = document.createElement("img");
     iconEl.setAttribute( "src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
     cityNameEl.append(iconEl);
@@ -136,32 +137,34 @@ var saveSearchData = function () {
   localStorage.setItem("search", JSON.stringify(oldData));
 };
 
+//load files
 var loadData = function () {
     oldData = JSON.parse(localStorage.getItem("search")) || [];
-    console.log(oldData);
+    //console.log(oldData);
     for (let i = 0; i < oldData.length; i++) {
         search = document.createElement("p");
-        search.setAttribute("class", "five-day");
+        search.setAttribute("class", "clear-history");
         search.textContent = oldData[i].text;
-        fiveDayEl.append(search);
+        clearEl.append(search);
     }
 };
 loadData();
 
-fiveDayEl.addEventListener("click", function () {
+clearEl.addEventListener("click", function () {
     newVal = oldData[0].text;
     fetch(apiBase + newVal + apiKey)
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
-        console.log(data);
-        currentTempEl.textContent = "Temp: " + data.daily[i].temp.day + "° F";
-        currentWindEl.textContent = "Wind: " + data.daily[i].speed + "MPH";
-        currentHumidityEl.textContent = "Humidity: " + data.daily[i].humidity + "%";
+        //console.log(data);
+        currentTempEl.textContent = "Temp: " + data.main.temp + "° F";
+        currentWindEl.textContent = "Wind: " + data.wind.speed + "MPH";
+        currentHumidityEl.textContent = "Humidity: " + data.main.humidity + "%";
         cityNameEl.textContent = data.name;
         var iconEl = document.createElement("img");
-        iconEl.setAttribute("src", "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
+        iconEl.setAttribute("src",
+        "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png");
         cityNameEl.append(iconEl);
       });
     });

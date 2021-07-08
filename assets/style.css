@@ -9,11 +9,11 @@
   }
 
   .search {
-    width: 35%;
+    width: 30%;
   }
 
   .main-display {
-    width: 62%;
+    width: 67%;
   }
 
   .container {
@@ -22,7 +22,7 @@
   }
 
   .city-name {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 650;
     font-family: "Courier New", Courier, monospace;
     padding-left: 8px;
@@ -32,10 +32,11 @@
     font-size: 30px;
     font-weight: 650;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 20px;
   }
 
   #search-button {
-    width: 17%;
+    width: 90%;
     height: 22px;
     margin: 5px;
     border-radius: 10px;
@@ -44,21 +45,25 @@
     background-color: rgb(68, 132, 228);
     cursor: pointer;
   }
+  .text-bar{
+    width: 90%;
+    height: 20px;
+  }
 
   .input-text {
     width: 95%;
     height: 40px;
-    margin: 5px;
-    border-radius: 5px;
-    border: solid 1px black;
+    margin: 20px;
+    border-radius: 10px;
+    
     outline: none;
   }
   
   .clear-button {
-    padding: 5px;
+    padding: 1px;
     text-align: center;
-    font-size: 16px;
-    margin: 10px;
+    font-size: 20px;
+    margin: 40px;
     border-radius: 5px;
     background-color: rgba(168, 166, 166, 0.418);
     cursor: pointer;
@@ -100,7 +105,7 @@
   }
 
   
-  #currentUV {
+  .UV-index {
     background-color: green;
     margin-left: 8px;
     font-weight: 600;
